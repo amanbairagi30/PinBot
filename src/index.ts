@@ -39,11 +39,15 @@ import { chat } from "./utils/chat-with-pins";
         console.log(`Content: ${pinnedMessage.content}`); // Might be empty for certain types of messages
       });
       console.log("------------------------------");
-      const allMessages = messages?.map((item) => item.content);
+      const allMessages = messages?.map((item) => ({
+        id: item.id,
+        content: item.content,
+      }));
+
       try {
         await interaction.deferReply({ ephemeral: true });
         await createEmbedAndPushToDB(
-          String(allMessages),
+          allMessages as { id: string; content: string }[],
           interaction.channelId,
           String(interaction.guildId)
         );

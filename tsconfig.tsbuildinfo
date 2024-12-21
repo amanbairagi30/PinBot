@@ -1,1 +1,1 @@
-{"root":["./src/index.ts","./src/test.ts","./src/commands/_commandlist.ts","./src/commands/multiplecommand.ts","./src/db/pinecone.ts","./src/events/interaction.ts","./src/interfaces/command.ts","./src/utils/askgemini.ts","./src/utils/chat-with-pins.ts","./src/utils/embed.ts","./src/utils/gemini.ts"],"version":"5.7.2"}
+{"root":["./src/index.ts","./src/test.ts","./src/db/pinecone.ts","./src/utils/askgemini.ts","./src/utils/chat-with-pins.ts","./src/utils/embed.ts","./src/utils/gemini.ts","./src/utils/prompt.ts"],"version":"5.7.2"}
