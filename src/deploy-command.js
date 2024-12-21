@@ -7,6 +7,40 @@ const commands = [
   new SlashCommandBuilder()
     .setName("ping")
     .setDescription("Replies with Pong!")
+    .addStringOption((option) =>
+      option
+        .setName("input")
+        .setDescription("The input to echo back")
+        .setRequired(true)
+    )
+    .toJSON(),
+  new SlashCommandBuilder()
+    .setName("export")
+    .setDescription("export current pins to pinecone db as embeddings")
+    .toJSON(),
+  new SlashCommandBuilder()
+    .setName("delete")
+    .setDescription("deletes the embeddings")
+    .toJSON(),
+  new SlashCommandBuilder()
+    .setName("ask")
+    .setDescription("Replies to your questions")
+    .addStringOption((option) =>
+      option
+        .setName("query")
+        .setDescription("query to give to AI")
+        .setRequired(true)
+    )
+    .toJSON(),
+  new SlashCommandBuilder()
+    .setName("chat-with-pin")
+    .setDescription("Chat with your pins")
+    .addStringOption((option) =>
+      option
+        .setName("chat")
+        .setDescription("query to give to AI")
+        .setRequired(true)
+    )
     .toJSON(),
 ];
 
