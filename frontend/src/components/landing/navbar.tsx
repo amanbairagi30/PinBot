@@ -1,11 +1,36 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { IconLogin, IconPin } from "@tabler/icons-react";
+import { IconLogin, IconLogout, IconPin } from "@tabler/icons-react";
 import Image from "next/image";
 import Logo from "../svgs/logo";
 import Discord from "../svgs/discord";
+import { signOut } from "@/utils/supabase/user";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const supabase = createClient();
+  const router = useRouter();
+  const [session, setSession] = useState<any>();
+  useEffect(() => {
+    supabase.auth.getSession().then((session) => {
+      // do something here with the session like  ex: setState(session)
+      console.log("SESSION :", session.data);
+      setSession(session.data.session?.user);
+    });
+  }, []);
+
+  async function signInWithDiscord(e: any) {
+    e.preventDefault();
+    const supabase = await createClient();
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: "discord",
+      options: {
+        redirectTo: `http://localhost:3000/auth/callback`,
+      },
+    });
+  }
   return (
     <>
       <main className="w-full my-6">
@@ -49,11 +74,19 @@ export default function Navbar() {
               <span>Github</span>
             </Button>
             {/* <Button>Connect Wallet</Button> */}
-            <Button variant={"default"}>
-              {/* <Discord /> */}
-              <IconLogin />
-              <span>Sign Up</span>
-            </Button>
+            {session ? (
+              <Button onClick={signOut} variant={"default"}>
+                {/* <Discord /> */}
+                <IconLogout />
+                <span>Log Out</span>
+              </Button>
+            ) : (
+              <Button onClick={(e) => signInWithDiscord(e)} variant={"default"}>
+                {/* <Discord /> */}
+                <IconLogin />
+                <span>Sign Up</span>
+              </Button>
+            )}
           </div>
         </div>
       </main>

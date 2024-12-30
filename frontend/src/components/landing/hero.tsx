@@ -40,7 +40,7 @@ export default function Hero() {
             <Badge className="mb-6 text-sm py-2 font-secondary rounded-full px-6 bg-primary/30 hover:bg-primary/30 border-[3px] border-primary">
               Easy to setup and chat 🚀
             </Badge>
-            <div className="font-extrabold">
+            <div className="font-semibold">
               <div className="text-6xl flex text-center items-center">
                 Chat with Discord Channel's Pins
               </div>
