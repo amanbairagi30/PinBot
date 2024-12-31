@@ -35,8 +35,11 @@ export async function updateSession(request: NextRequest) {
 
   // IMPORTANT: DO NOT REMOVE auth.getUser()
 
-  const { data } = await supabase.auth.getUser();
-  console.log(data);
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  console.log(user);
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:
