@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function Topbar({ session }: { session: Session | null }) {
   return (
     <>
-      <div className="border-b-2 border-primary bg-primary/10 p-2 relative">
+      <div className="border-b-2 border-primary bg-primary/15 p-2 relative">
         <div className="absolute hidden xl:block top-0 left-0 bg-gradient-to-r from-background via-background to-transparent xl:w-60 h-40"></div>
         <div className="absolute hidden xl:block top-0 right-0 bg-gradient-to-l from-background via-background to-transparent xl:w-60 h-40"></div>
         <div className="max-w-5xl flex items-center justify-between mx-auto">
