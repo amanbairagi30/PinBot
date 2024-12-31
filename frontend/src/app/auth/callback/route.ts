@@ -1,28 +1,30 @@
 import { NextResponse } from "next/server";
+// The client you created from the Server-Side Auth instructions
 import { createClient } from "@/utils/supabase/server";
-import { headers } from "next/headers";
 
 export async function GET(request: Request) {
-  // Get the host header to determine the current domain
-  const headersList = headers();
-  const host = headersList.get("host") || "";
-  const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
-
-  // Construct the base URL using the current domain
-  const baseUrl = `${protocol}://${host}`;
-
-  // Get search params from the request URL
-  const { searchParams } = new URL(request.url);
+  const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
+  // if "next" is in param, use it as the redirect URL
   const next = searchParams.get("next") ?? "/dashboard";
 
   if (code) {
     const supabase = await createClient();
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      return NextResponse.redirect(`${baseUrl}${next}`);
+      const forwardedHost = request.headers.get("x-forwarded-host"); // original origin before load balancer
+      const isLocalEnv = process.env.NODE_ENV === "development";
+      if (isLocalEnv) {
+        // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
+        return NextResponse.redirect(`${origin}${next}`);
+      } else if (forwardedHost) {
+        return NextResponse.redirect(`https://pin-bot.vercel.app/${next}`);
+      } else {
+        return NextResponse.redirect(`${origin}${next}`);
+      }
     }
   }
 
-  return NextResponse.redirect(`${baseUrl}/auth/auth-code-error`);
+  // return the user to an error page with instructions
+  return NextResponse.redirect(`${origin}/auth/auth-code-error`);
 }
