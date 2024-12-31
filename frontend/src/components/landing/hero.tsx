@@ -10,9 +10,13 @@ import Discord from "../svgs/discord";
 import { IconPin } from "@tabler/icons-react";
 import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
+import { useSessionStore } from "@/store/session";
+import { signInWithDiscord } from "@/utils/user/user";
 
 export default function Hero() {
   const router = useRouter();
+  const { session, setSession } = useSessionStore();
+
   return (
     <>
       <div className="flex relative mb-40 flex-col items-center h-screen w-full border-yellow-500">
@@ -52,9 +56,13 @@ export default function Hero() {
           </div>
 
           <div className="mt-10 flex items-center gap-4">
-            <Button>
+            <Button
+              onClick={(e) => {
+                session ? router.push("/dashboard") : signInWithDiscord(e);
+              }}
+            >
               <Bot />
-              <span>Invite PinBot</span>
+              {session ? <span>Dashboard </span> : <span>Invite PinBot</span>}
             </Button>
 
             <Button className="bg-primary/20 hover:bg-primary/30">

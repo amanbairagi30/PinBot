@@ -5,17 +5,32 @@ import "dotenv/config.js";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { generatePrompt } from "./prompt";
+import axios from "axios";
+import { logger } from "../services/logger";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+export const fetchAPIKey = async (tag: any) => {
+  const key = await axios.get(
+    `http://localhost:3000/api/gemini-keys?tag=${tag.replace("#", "%23")}`
+  );
+  logger.info("KEY : ", key);
+  console.log(key);
+  return key;
+};
 
 export const chat = async (
   query: string,
   guildId: string,
   channelId: string,
-  messages: any
+  messages: any,
+  tag: any
 ) => {
+  const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+  console.log(tag);
+  console.log(typeof tag);
   console.log("inchat block");
+  console.log(await fetchAPIKey(tag));
   const embedding = await getEmbeddings(query);
 
   console.log("after embed : ", embedding);

@@ -15,6 +15,7 @@
     "@discordjs/rest": "^2.4.0",
     "@google/generative-ai": "^0.21.0",
     "@pinecone-database/pinecone": "^4.0.0",
+    "axios": "^1.7.9",
     "discord.js": "^14.16.3",
     "dotenv": "^16.4.7",
     "winston": "^3.17.0"

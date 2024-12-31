@@ -21,6 +21,9 @@ export const chatWithPin: CommandInt = {
     if (interaction.commandName === "chat-with-pin") {
       try {
         await interaction.deferReply();
+        const tag = interaction.user.tag;
+        console.log(tag);
+
         const query = interaction.options.getString("chat");
         const channelIds = await getChannelIds(
           process.env.GUILD_ID as string,
@@ -45,7 +48,8 @@ export const chatWithPin: CommandInt = {
           query as string,
           interaction.guildId as string,
           interaction.channelId,
-          allPinnedMessages
+          allPinnedMessages,
+          tag
         );
         await interaction.editReply(response);
       } catch (error) {

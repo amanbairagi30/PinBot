@@ -1,13 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { IconLogin, IconLogout, IconPin } from "@tabler/icons-react";
-import Image from "next/image";
+import { IconLogin, IconLogout } from "@tabler/icons-react";
 import Logo from "../svgs/logo";
-import Discord from "../svgs/discord";
 import { signOut } from "@/utils/supabase/user";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
+import { signInWithDiscord } from "@/utils/user/user";
 
 export default function Navbar() {
   const supabase = createClient();
@@ -19,18 +18,8 @@ export default function Navbar() {
       console.log("SESSION :", session.data);
       setSession(session.data.session?.user);
     });
-  }, []);
+  }, [signOut]);
 
-  async function signInWithDiscord(e: any) {
-    e.preventDefault();
-    const supabase = await createClient();
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: "discord",
-      options: {
-        redirectTo: `http://localhost:3000/auth/callback`,
-      },
-    });
-  }
   return (
     <>
       <main className="w-full my-6">
@@ -75,7 +64,13 @@ export default function Navbar() {
             </Button>
             {/* <Button>Connect Wallet</Button> */}
             {session ? (
-              <Button onClick={signOut} variant={"default"}>
+              <Button
+                onClick={async () => {
+                  await signOut();
+                  router.push("/");
+                }}
+                variant={"default"}
+              >
                 {/* <Discord /> */}
                 <IconLogout />
                 <span>Log Out</span>
