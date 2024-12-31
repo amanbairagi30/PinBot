@@ -1,24 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "../ui/button";
 import { IconLogin, IconLogout } from "@tabler/icons-react";
 import Logo from "../svgs/logo";
 import { signOut } from "@/utils/supabase/user";
-import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { signInWithDiscord } from "@/utils/user/user";
+import { useSession } from "@/hooks/use-session";
 
 export default function Navbar() {
-  const supabase = createClient();
   const router = useRouter();
-  const [session, setSession] = useState<any>();
-  useEffect(() => {
-    supabase.auth.getSession().then((session) => {
-      // do something here with the session like  ex: setState(session)
-      console.log("SESSION :", session.data);
-      setSession(session.data.session?.user);
-    });
-  }, [signOut]);
+  const session = useSession();
 
   return (
     <>
@@ -76,7 +68,7 @@ export default function Navbar() {
                 <span>Log Out</span>
               </Button>
             ) : (
-              <Button onClick={(e) => signInWithDiscord(e)} variant={"default"}>
+              <Button onClick={() => signInWithDiscord()} variant={"default"}>
                 {/* <Discord /> */}
                 <IconLogin />
                 <span>Sign Up</span>

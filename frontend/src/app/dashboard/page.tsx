@@ -102,10 +102,10 @@ export default function Dashboard() {
         console.error("Database operation error:", error);
         throw error;
       }
-    } catch (err: any) {
+    } catch (err) {
       console.error("Error in handleSubmitAPIKey:", err);
       setMessage({
-        text: err.message || "An unexpected error occurred.",
+        text: (err as string) || "An unexpected error occurred.",
         type: "error",
       });
     } finally {

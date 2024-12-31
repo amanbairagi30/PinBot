@@ -1,6 +1,5 @@
-import { Manrope, Outfit, Wix_Madefor_Text } from "next/font/google";
+import { Outfit, Wix_Madefor_Text } from "next/font/google";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 

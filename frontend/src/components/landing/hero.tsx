@@ -1,8 +1,7 @@
 "use client";
-import { Bot, LayoutDashboard, Shapes, Video } from "lucide-react";
-import React, { useEffect } from "react";
+import { Bot, Video } from "lucide-react";
+import React from "react";
 import { Button } from "../ui/button";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import GlowDiv from "./glow-div";
@@ -15,7 +14,7 @@ import { signInWithDiscord } from "@/utils/user/user";
 
 export default function Hero() {
   const router = useRouter();
-  const { session, setSession } = useSessionStore();
+  const { session } = useSessionStore();
 
   return (
     <>
@@ -23,10 +22,11 @@ export default function Hero() {
         <div className="w-full absolute border-red-500 top-0 h-[30rem] bg-gradient-to-b from-background via-background/60 to-transparent z-[20]"></div>
         <div className="w-full absolute border-green-500 bottom-0 h-[30rem] bg-gradient-to-t from-background via-background/60 to-transparent z-[20]"></div>
         <div className="border-x-8 flex items-center max-w-6xl z-[1] w-full border-primary absolute h-screen">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => {
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => {
             const isEven = item % 2 === 0;
             return (
               <div
+                key={index}
                 className={cn(
                   `border-2 h-full w-[8rem]`,
                   isEven ? "bg-primary opacity-30" : "bg-primary/20 opacity-60"
@@ -46,7 +46,7 @@ export default function Hero() {
             </Badge>
             <div className="font-semibold">
               <div className="text-6xl flex text-center items-center">
-                Chat with Discord Channel's Pins
+                Chat with Discord Channel&apos;s Pins
               </div>
               <div className="text-6xl mt-2">with help of Pinbot</div>
             </div>
@@ -57,9 +57,9 @@ export default function Hero() {
 
           <div className="mt-10 flex items-center gap-4">
             <Button
-              onClick={(e) => {
-                session ? router.push("/dashboard") : signInWithDiscord(e);
-              }}
+              onClick={() =>
+                session ? router.push("/dashboard") : signInWithDiscord()
+              }
             >
               <Bot />
               {session ? <span>Dashboard </span> : <span>Invite PinBot</span>}
