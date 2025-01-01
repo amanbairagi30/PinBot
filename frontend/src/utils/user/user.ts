@@ -5,7 +5,7 @@ export async function signInWithDiscord() {
   await supabase.auth.signInWithOAuth({
     provider: "discord",
     options: {
-      redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`,
+      redirectTo: `${process.env.NEXT_PUBLIC_URL}/api/auth/callback`,
     },
   });
 }
