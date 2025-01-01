@@ -11,6 +11,7 @@ import { useSession } from "@/hooks/use-session";
 export default function Navbar() {
   const router = useRouter();
   const session = useSession();
+  console.log(session);
 
   return (
     <>

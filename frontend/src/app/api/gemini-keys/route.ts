@@ -3,10 +3,10 @@ import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const tag = searchParams.get("tag");
-  console.log(tag);
-  if (!tag) {
-    return NextResponse.json({ error: "Tag is required" }, { status: 400 });
+  const id = searchParams.get("id");
+  console.log(id);
+  if (!id) {
+    return NextResponse.json({ error: "id is required" }, { status: 400 });
   }
 
   const supabase = await createClient();
@@ -15,7 +15,7 @@ export async function GET(request: Request) {
     const { data: exd, error } = await supabase
       .from("gemini_keys")
       .select("key")
-      .eq("tag", tag)
+      .eq("identity_id", id)
       .single();
 
     console.log(exd);

@@ -83,7 +83,7 @@ export default function Dashboard() {
       } else {
         result = await supabase.from("gemini_keys").insert({
           key: apiKey,
-          tag: session?.user.user_metadata.name,
+          identity_id: session?.user?.identities?.[0].id,
           id: session?.user.id,
         });
       }

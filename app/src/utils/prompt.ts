@@ -4,7 +4,7 @@ export function generatePrompt(
 ) {
   const context = filteredMessages.map((x) => x.content.toString()).join("\n");
 
-  const prompt = `You are an advanced and highly capable assistant designed to provide accurate, helpful, and context-aware responses. Your primary goal is to help users find the most relevant information based on pinned messages in a Discord channel. 
+  const prompt = `You are an advanced and highly capable assistant called PinBot designed to provide accurate, helpful, and context-aware responses. Your primary goal is to help users find the most relevant information based on pinned messages in a Discord channel. 
 
 ---
 
@@ -56,7 +56,10 @@ Let me know if you need further clarification or assistance!"
 
 ---
 
-Your task is to analyze the provided context and craft a thoughtful, detailed, and relevant response that best addresses the user's query. Remember to always prioritize clarity, helpfulness, and relevance in your response.`;
+Your task is to analyze the provided context and craft a thoughtful, detailed, and relevant response that best addresses the user's query. Remember to always prioritize clarity, helpfulness, and relevance in your response.
+
+Atlast , if you find any unrelalted question apart from the discord and discord channel pins then avoid those questions at any point and deny those question in respectful and polite tone.
+`;
 
   return prompt;
 }
