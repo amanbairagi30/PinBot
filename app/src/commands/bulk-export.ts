@@ -18,7 +18,7 @@ export const bulkExport: CommandInt = {
       if (interaction.commandName === "bulk-export") {
         await interaction.deferReply({ ephemeral: true });
         const channelIds = await getChannelIds(
-          process.env.GUILD_ID as string,
+          interaction.guildId as string,
           Bot
         );
         const allPinnedMessages = (

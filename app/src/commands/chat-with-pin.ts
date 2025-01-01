@@ -26,7 +26,7 @@ export const chatWithPin: CommandInt = {
 
         const query = interaction.options.getString("chat");
         const channelIds = await getChannelIds(
-          process.env.GUILD_ID as string,
+          interaction.guildId as string,
           Bot
         );
         const allPinnedMessages = (

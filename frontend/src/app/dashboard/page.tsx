@@ -28,7 +28,7 @@ export default function Dashboard() {
   const [isCopied, setIsCopied] = useState(false);
 
   const pinbotUrl =
-    "https://discord.com/oauth2/authorize?client_id=1319665441366343751";
+    "https://discord.com/oauth2/authorize?client_id=1319665441366343751&permissions=2147485696&response_type=code&redirect_uri=https%3A%2F%2Fdiscord.com&integration_type=0&scope=applications.commands+bot+messages.read";
 
   useEffect(() => {
     const fetchApiKey = async () => {
