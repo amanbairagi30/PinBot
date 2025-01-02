@@ -11,6 +11,7 @@ import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
 import { useSessionStore } from "@/store/session";
 import { signInWithDiscord } from "@/utils/user/user";
+import Link from "next/link";
 
 export default function Hero() {
   const router = useRouter();
@@ -64,11 +65,15 @@ export default function Hero() {
               <Bot />
               {session ? <span>Dashboard </span> : <span>Invite PinBot</span>}
             </Button>
-
-            <Button className="bg-primary/20 hover:bg-primary/30">
-              <Video className="w-2 h-2" />
-              <span>Watch Demo</span>
-            </Button>
+            <Link
+              target="_blank"
+              href={"https://www.youtube.com/watch?v=xwYWbJjnv8E"}
+            >
+              <Button className="bg-primary/20 hover:bg-primary/30">
+                <Video className="w-2 h-2" />
+                <span>Watch Demo</span>
+              </Button>
+            </Link>
           </div>
           <div className="flex relative flex-col items-center mt-36">
             <div className="bg-white absolute top-[-5rem] -left-4 shadow-2xl shadow-black -rotate-12 z-20 rounded-[1.5rem] w-28 h-28 flex items-center justify-center">
