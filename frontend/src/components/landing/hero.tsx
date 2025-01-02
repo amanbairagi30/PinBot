@@ -46,13 +46,15 @@ export default function Hero() {
               Easy to setup and chat 🚀
             </Badge>
             <div className="font-semibold">
-              <div className="text-6xl flex text-center items-center">
+              <div className="text-4xl md:text-6xl flex text-center items-center">
                 Chat with Discord Channel&apos;s Pins
               </div>
-              <div className="text-6xl mt-2">with help of Pinbot</div>
+              <div className="text-4xl md:text-6xl mt-2">
+                with help of Pinbot
+              </div>
             </div>
           </div>
-          <div className="mt-6 text-lg font-secondary w-[40%] text-center">
+          <div className="mt-6 text-base md:text-lg font-secondary w-full px-2 md:px-0 md:w-[40%] text-center">
             Say goodbye to scrolling, let Pinbot do the talking!
           </div>
 
@@ -86,14 +88,14 @@ export default function Hero() {
               <Discord />
             </GlowDiv>
           </div>
-          <div className="border shadow-xl shadow-primary/15 -mt-2 bg-primary/10 flex w-[30rem] items-center gap-4 z-40 backdrop-blur-md max-h-fit p-4 rounded-3xl">
+          <div className="border flex-col md:flex-row shadow-xl shadow-primary/15 -mt-2 bg-primary/10 flex w-full md:w-[30rem] items-start md:items-center gap-4 z-40 backdrop-blur-md max-h-fit p-4 rounded-3xl">
             <div className="flex border-4 border-primary p-2 rounded-xl px-4 py-3 items-center gap-2">
               <Bot />
               <div>PinBot</div>
             </div>
             <Input
               placeholder="Type to chat with discord pins..."
-              className="h-[45px] rounded-lg focus-visible:ring-2 border-2 border-primary/30"
+              className="w-full h-[45px] rounded-lg focus-visible:ring-2 border-2 border-primary/30"
             />
           </div>
         </div>

@@ -35,7 +35,7 @@ export default function Navbar() {
               <span className="cursor-pointer">Docs</span>
             </div> */}
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-1 md:gap-4">
             {/* <Button>Connect Wallet</Button> */}
             <Link
               target="_blank"
@@ -58,7 +58,7 @@ export default function Navbar() {
                   />
                 </svg>
 
-                <span>Github</span>
+                <span className="hidden md:block">Github</span>
               </Button>
             </Link>
             {/* <Button>Connect Wallet</Button> */}
