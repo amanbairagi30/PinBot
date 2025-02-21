@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        primary: ["var(--font-wix)", "sans-serif"],
+        primary: ["var(--font-inter)", "sans-serif"],
         secondary: ["var(--font-outfit)", "sans-serif"],
       },
       colors: {

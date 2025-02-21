@@ -45,13 +45,11 @@ export default function Hero() {
             <Badge className="mb-6 text-sm py-2 font-secondary rounded-full px-6 bg-primary/30 hover:bg-primary/30 border-[3px] border-primary">
               Easy to setup and chat 🚀
             </Badge>
-            <div className="font-semibold">
+            <div className="font-medium flex items-center flex-col">
               <div className="text-4xl md:text-6xl flex text-center items-center">
-                Chat with Discord Channel&apos;s Pins
+                Talk with Discord Channel&apos;s
               </div>
-              <div className="text-4xl md:text-6xl mt-2">
-                with help of Pinbot
-              </div>
+              <div className="text-4xl md:text-6xl mt-2">Pins using Pinbot</div>
             </div>
           </div>
           <div className="mt-6 text-base md:text-lg font-secondary w-full px-2 md:px-0 md:w-[40%] text-center">
@@ -63,16 +61,18 @@ export default function Hero() {
               onClick={() =>
                 session ? router.push("/dashboard") : signInWithDiscord()
               }
+              className="h-12 px-6"
             >
-              <Bot />
+              <Bot className="size-10" />
               {session ? <span>Dashboard </span> : <span>Invite PinBot</span>}
             </Button>
             <Link
               target="_blank"
               href={"https://www.youtube.com/watch?v=xwYWbJjnv8E"}
+              className="size-fit"
             >
-              <Button className="bg-primary/20 hover:bg-primary/30">
-                <Video className="w-2 h-2" />
+              <Button className="bg-primary/20 h-12 px-6 hover:bg-primary/30">
+                <Video className="size-10" />
                 <span>Watch Demo</span>
               </Button>
             </Link>

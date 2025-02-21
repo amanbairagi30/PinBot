@@ -1,11 +1,11 @@
-import { Outfit, Wix_Madefor_Text } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const wix = Wix_Madefor_Text({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-wix",
+  variable: "--font-inter",
 });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${wix.variable} ${outfit.variable} font-primary antialiased`}
+        className={`${inter.variable} ${outfit.variable} font-primary antialiased`}
       >
         <ThemeProvider
           attribute="class"
